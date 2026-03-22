@@ -127,7 +127,7 @@ streamlit run dashboard/app.py
 
 ## Author
 
-MSc Data Science candidate with 2+ years of SAP Technical Consulting experience (SD/MM modules).  
+MSc Data Science candidate with 3+ years of SAP Technical Consulting experience.  
 Bridging enterprise ERP systems with modern data science — the gap most companies struggle to fill.
 
 ---
