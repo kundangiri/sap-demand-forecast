@@ -1,0 +1,33 @@
+name: CI - SAP Demand Forecasting
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Generate SAP data
+      run: python data/generate_sap_data.py
+
+    - name: Train model
+      run: python src/train_model.py
+
+    - name: Check model artifacts exist
+      run: |
+        test -f src/xgb_model.pkl && echo "Model OK"
+        test -f src/shap_explainer.pkl && echo "Explainer OK"
+        test -f data/monthly_demand_features.csv && echo "Features OK"
